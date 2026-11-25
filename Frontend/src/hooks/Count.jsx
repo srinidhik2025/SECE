@@ -3,33 +3,29 @@ import { useState } from 'react'
 
 const Count = () => {
   const [count, setCount] = useState(0)
+  const [isCountVisible, setIsCountVisible] = useState(true)
 
   return (
     <div>
-      <h2>Count: {count}</h2>
-      <button onClick={() => setCount(count+1)}>
+      {isCountVisible && <h2>Count: {count}</h2>}
+      <Button onClick={() => setCount((currentCount) => currentCount + 1)}>
         Increase
-        </button>
-      <button variant="destructive" onClick={()=>setCount(0)}>
-        reset
-        </button>
+      </Button>
+      <Button variant="destructive" onClick={() => {
+        setCount(0)
+        setIsCountVisible(true)
+      }}>
+        Reset
+      </Button>
+      <Button
+        variant="secondary"
+        aria-pressed={!isCountVisible}
+        onClick={() => setIsCountVisible((isVisible) => !isVisible)}
+      >
+        {isCountVisible ? 'Hide Count' : 'Show Count'}
+      </Button>
     </div>
   )
 }
-//const Count = () => {
-//   const [count, setCount] = useState(0)
-
-//   return (
-//     <div>
-//       <h2>Count: {count}</h2>
-//       <Button
-//         type="button"
-//         onClick={() => setCount((currentCount) => currentCount + 1)}
-//       >
-//         Increase
-//       </Button>
-//     </div>
-//   )
-// }
 
 export default Count
