@@ -13,6 +13,7 @@ console.log(typeof a);
 let c = 22;
 {
     let c = 10;
+    
 }
 console.log(c);
 
